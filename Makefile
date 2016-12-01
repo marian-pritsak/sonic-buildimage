@@ -174,6 +174,10 @@ target/docker-platform-monitor.gz: target/docker-base.gz
 	docker load < $<
 	$(call build_docker,$(patsubst target/%.gz,%,$@),$@)
 
+target/docker-dhcp-relay.gz: target/docker-base.gz
+    docker load < $<
+    $(call build_docker,$(patsubst target/%.gz,%,$@),$@)
+
 ## Rules: linux image content
 deps/linux-image-3.16.0-4-amd64_%.deb: src/sonic-linux-kernel/linux-image-3.16.0-4-amd64_%.deb
 	mkdir -p `dirname $@` && cp $< $(dir $@)
@@ -189,7 +193,7 @@ target/sonic-aboot.bin: deps/linux-image-3.16.0-4-amd64_3.16.7-ckt11-2+acs8u2_am
 brcm-all: target/sonic-generic.bin $(addprefix target/,docker-syncd.gz docker-orchagent.gz docker-fpm.gz docker-team.gz docker-database.gz docker-snmp-sv2.gz docker-lldp-sv2.gz docker-platform-monitor.gz)
 
 ## Note: docker-fpm.gz must be the last to build the implicit dependency fpmsyncd
-mlnx-all: target/sonic-generic.bin $(addprefix target/,docker-syncd-mlnx.gz docker-orchagent-mlnx.gz docker-fpm.gz docker-team.gz docker-database.gz docker-snmp-sv2.gz docker-lldp-sv2.gz docker-platform-monitor.gz)
+mlnx-all: target/sonic-generic.bin $(addprefix target/,docker-syncd-mlnx.gz docker-orchagent-mlnx.gz docker-fpm.gz docker-team.gz docker-database.gz docker-snmp-sv2.gz docker-lldp-sv2.gz docker-platform-monitor.gz docker-dhcp-relay.gz)
 
 ## Note: docker-fpm.gz must be the last to build the implicit dependency fpmsyncd
 cavm-all: target/sonic-generic.bin $(addprefix target/,docker-syncd-cavm.gz docker-orchagent-cavm.gz docker-fpm.gz docker-team.gz docker-database.gz docker-snmp-sv2.gz docker-lldp-sv2.gz docker-platform-monitor.gz)
