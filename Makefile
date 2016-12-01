@@ -175,8 +175,8 @@ target/docker-platform-monitor.gz: target/docker-base.gz
 	$(call build_docker,$(patsubst target/%.gz,%,$@),$@)
 
 target/docker-dhcp-relay.gz: target/docker-base.gz
-    docker load < $<
-    $(call build_docker,$(patsubst target/%.gz,%,$@),$@)
+	docker load < $<
+	$(call build_docker,$(patsubst target/%.gz,%,$@),$@)
 
 ## Rules: linux image content
 deps/linux-image-3.16.0-4-amd64_%.deb: src/sonic-linux-kernel/linux-image-3.16.0-4-amd64_%.deb
