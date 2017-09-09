@@ -202,7 +202,9 @@ RUN apt-get update && apt-get install -y \
         libgtest-dev \
         cmake \
 # For python-based swsscommon
-        swig3.0
+        swig3.0 \
+# For initramfs
+        bash-completion
 
 # For linux build
 RUN apt-get -y build-dep linux
