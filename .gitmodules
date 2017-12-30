@@ -72,3 +72,6 @@
 [submodule "platform/nephos/sonic-platform-modules-ingrasys"]
 	path = platform/nephos/sonic-platform-modules-ingrasys
 	url = https://github.com/Ingrasys-sonic/sonic-platform-modules-ingrasys-nephos.git
+[submodule "platform/mellanox/hw-management"]
+	path = platform/mellanox/hw-management
+	url = https://github.com/Mellanox/hw-mgmt/
