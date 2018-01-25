@@ -1,14 +1,14 @@
-MLNX_SDK_BASE_URL = https://github.com/Mellanox/SAI-Implementation/raw/564703412781016766b248b98266bd6f2c161431/sdk
+MLNX_SDK_BASE_URL = https://github.com/YonatanPitz/SAI-Implementation/tree/84eb9f5c08263308e89357d78da66dc6a18b8a79/sdk
 MLNX_SDK_VERSION = 4.2.6011
 MLNX_SDK_RDEBS += $(APPLIBS) $(IPROUTE2_MLNX) $(SX_ACL_RM) $(SX_COMPLIB) \
 		  $(SX_EXAMPLES) $(SX_GEN_UTILS) $(SX_SCEW) $(SX_SDN_HAL) \
-		  $(SXD_LIBS) $(TESTX)
+		  $(SXD_LIBS) $(TESTX) $(FX_BASE)
 
 MLNX_SDK_DEBS += $(APPLIBS_DEV) $(IPROUTE2_MLNX_DEV) $(SX_ACL_RM_DEV) \
 		 $(SX_COMPLIB_DEV) $(SX_COMPLIB_DEV_STATIC) $(SX_EXAMPLES_DEV) \
 		 $(SX_GEN_UTILS_DEV) $(SX_SCEW_DEV) $(SX_SCEW_DEV_STATIC) \
 		 $(SX_SDN_HAL_DEV) $(SX_SDN_HAL_DEV_STATIC) $(SXD_LIBS_DEV) \
-		 $(SXD_LIBS_DEV_STATIC) $(TESTX_DEV)
+		 $(SXD_LIBS_DEV_STATIC) $(TESTX_DEV) $(FX_BASE_DEV)
 
 APPLIBS = applibs_1.mlnx.$(MLNX_SDK_VERSION)_amd64.deb
 $(APPLIBS)_DEPENDS += $(SX_COMPLIB) $(SX_GEN_UTILS) $(SXD_LIBS) $(LIBNL3) $(LIBNL_GENL3)
@@ -34,6 +34,10 @@ $(eval $(call add_derived_package,$(SX_SCEW),$(SX_SCEW_DEV)))
 SXD_LIBS = sxd-libs_1.mlnx.$(MLNX_SDK_VERSION)_amd64.deb
 SXD_LIBS_DEV = sxd-libs-dev_1.mlnx.$(MLNX_SDK_VERSION)_amd64.deb
 $(eval $(call add_derived_package,$(SXD_LIBS),$(SXD_LIBS_DEV)))
+FX_BASE     = fx-base1_0.0.1-1_amd64.deb
+$(FX_BASE)_DEPENDS += $(SX_COMPLIB) $(APPLIBS)
+FX_BASE_DEV = fx-base-dev_0.0.1-1_amd64.deb
+$(eval $(call add_derived_package,$(FX_BASE),$(FX_BASE_DEV)))
 #packages that are required for runtime only
 PYTHON_SDK_API = python-sdk-api_1.mlnx.$(MLNX_SDK_VERSION)_amd64.deb
 $(PYTHON_SDK_API)_DEPENDS += $(APPLIBS) $(SXD_LIBS)
