@@ -37,9 +37,10 @@ elif [ "$HWSKU" == "Force10-S6100" ]; then
     SWSSCONFIG_ARGS+="th.64ports.buffers.json th.64ports.qos.json "
 elif [ "$HWSKU" == "Arista-7050-QX32" ]; then
     SWSSCONFIG_ARGS+="td2.32ports.buffers.json td2.32ports.qos.json "
-elif [[ "$HWSKU" == "ACS-MSN27"* ]]; then
-    sonic-cfggen -d -t /usr/share/sonic/templates/msn27xx.32ports.buffers.json.j2 > /etc/swss/config.d/msn27xx.32ports.buffers.json
-    SWSSCONFIG_ARGS+="msn27xx.32ports.buffers.json "
+# temporarily disable due to bad minigraph
+#elif [[ "$HWSKU" == "ACS-MSN27"* ]]; then
+#    sonic-cfggen -d -t /usr/share/sonic/templates/msn27xx.32ports.buffers.json.j2 > /etc/swss/config.d/msn27xx.32ports.buffers.json
+#    SWSSCONFIG_ARGS+="msn27xx.32ports.buffers.json "
 fi
 
 for file in $SWSSCONFIG_ARGS; do
