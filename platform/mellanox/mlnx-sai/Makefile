@@ -6,11 +6,11 @@ MAIN_TARGET = mlnx-sai_1.mlnx.$(MLNX_SAI_VERSION)_amd64.deb
 
 $(addprefix $(DEST)/, $(MAIN_TARGET)): $(DEST)/% :
 	# get sources
-	rm -rf SAI-Implementation
+	rm -rf SAI-Implementation-no-sdk
 	git clone https://github.com/YonatanPitz/SAI-Implementation-no-sdk.git
 
 	# build
-	pushd SAI-Implementation
+	pushd SAI-Implementation-no-sdk
 	git checkout $(MLNX_SAI_REVISION)
 	pushd mlnx_sai
 	chmod a+x autogen.sh
